@@ -1,0 +1,14 @@
+{
+    "name": "futuralibs/paymentslib",
+    "description": "Biblioteca desenvolvida em PHP para integração com pagamentos",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Futuralibs\\Paymentslib\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "futuralibs/futurautils": "^0.0.2"
+    }
+}
