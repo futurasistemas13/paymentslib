@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil;
 
-use Futuralibs\Paymentslib\Interface\Pix\BankConfiguration;
+use Futuralibs\Paymentslib\Interface\Bank\BankConfiguration;
 use Futuralibs\Paymentslib\Type\TypeEnvironment;
+use Futuralibs\Paymentslib\Type\TypeBank;
 
-class BancoBrasilConfiguration implements BankConfiguration
+final class BancoBrasilConfiguration implements BankConfiguration
 {
 
     private TypeEnvironment $environment;
@@ -34,6 +35,14 @@ class BancoBrasilConfiguration implements BankConfiguration
         $this->environment = $environment;
 
         $this->urlEnvironment = $environments[$environment->name];
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeBank(): string
+    {
+        return TypeBank::BancoBrasil->value;
     }
 
     /**

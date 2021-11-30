@@ -7,7 +7,8 @@ use Futuralibs\Paymentslib\Exception\HttpRequestException;
 use Futuralibs\Paymentslib\HttpRequest;
 use Futuralibs\Paymentslib\Interface\Pix\PixInterface;
 
-class BancoBrasilMethods implements PixInterface
+
+final class BancoBrasilMethods implements PixInterface
 {
 
     private HttpRequest $httpRequest;
@@ -23,15 +24,15 @@ class BancoBrasilMethods implements PixInterface
     {
         $this->httpRequest = new HttpRequest();
 
-        $this->brasilConfiguration = $brasilConfiguration;
-
         $this->brasilToken = new BancoBrasilToken($brasilConfiguration);
+
+        $this->brasilConfiguration = $brasilConfiguration;
     }
 
     /**
      * @throws HttpRequestException
      */
-    public function generateToken(): string
+    public function generateToken(): array
     {
         return $this->brasilToken->generateToken();
     }
