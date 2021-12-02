@@ -11,4 +11,7 @@ enum TypeScopePix: string
 
     case PREAD = 'pix.read';
     case PWRITE  = 'pix.write';
+    case CREAD  = 'cob.read';
+    case CWRITE  = 'cob.write';
+
 }

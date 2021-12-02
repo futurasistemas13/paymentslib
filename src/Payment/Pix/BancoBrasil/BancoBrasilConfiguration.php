@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil;
 
-use Futuralibs\Paymentslib\Interface\Bank\BankConfiguration;
-use Futuralibs\Paymentslib\Type\TypeEnvironment;
+use Futuralibs\Paymentslib\Interface\Bank\BankConfigurationInterface;
+use Futuralibs\Futurautils\Type\TypeEnvironment;
 use Futuralibs\Paymentslib\Type\TypeBank;
 
-final class BancoBrasilConfiguration implements BankConfiguration
+final class BancoBrasilConfiguration implements BankConfigurationInterface
 {
 
     private TypeEnvironment $environment;
@@ -28,8 +28,8 @@ final class BancoBrasilConfiguration implements BankConfiguration
     public function __construct(TypeEnvironment $environment)
     {
         $environments = [
-            TypeEnvironment::SandBox->name => 'https://api.hm.bb.com.br/',
-            TypeEnvironment::Production->name => 'https://api.bb.com.br/'
+            TypeEnvironment::SandBox->name => 'https://api.hm.bb.com.br',
+            TypeEnvironment::Production->name => 'https://api.bb.com.br'
         ];
 
         $this->environment = $environment;

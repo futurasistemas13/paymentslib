@@ -8,9 +8,13 @@ interface PixInterface
 {
     public function generateToken();
 
-    public function generateCharge();
+    public function refreshToken();
 
-    public function queryPix();
+    public function generateCharge(PixDataInterface $data);
 
-    public function reviewCharge();
+    public function queryPix(PixFilterInterface $data = null);
+
+    public function queryPixId($id);
+
+    public function reviewCharge($id, $data);
 }

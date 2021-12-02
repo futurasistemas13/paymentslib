@@ -9,6 +9,10 @@
     },
     "require": {
         "guzzlehttp/guzzle": "^7.4",
-        "futuralibs/futurautils": "^0.0.2"
+        "symfony/validator": "^6.0",
+        "doctrine/annotations": "^1.13",
+        "symfony/cache": "^6.0",
+        "symfony/finder": "^6.0",
+        "futuralibs/futurautils": "^0.1.9"
     }
 }

@@ -4,52 +4,110 @@ declare(strict_types=1);
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil;
 
 use Futuralibs\Paymentslib\Exception\HttpRequestException;
-use Futuralibs\Paymentslib\HttpRequest;
+use Futuralibs\Paymentslib\Http\HttpRequestBancoBrasil;
+use Futuralibs\Paymentslib\Interface\Pix\PixDataInterface;
+use Futuralibs\Paymentslib\Interface\Pix\PixFilterInterface;
 use Futuralibs\Paymentslib\Interface\Pix\PixInterface;
+use Futuralibs\Paymentslib\Payment\Pix\AbstractPixBank;
+use Futuralibs\Futurautils\Type\TypeHttpMethod;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity\BancoBrasil;
+use Futuralibs\Paymentslib\Validator\BaseValidator;
 
 
-final class BancoBrasilMethods implements PixInterface
+final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
 {
+    private BaseValidator $baseValidator;
 
-    private HttpRequest $httpRequest;
+    private HttpRequestBancoBrasil $httpRequestBancoBrasil;
 
     private BancoBrasilConfiguration $brasilConfiguration;
-
-    private BancoBrasilToken $brasilToken;
 
     /**
      * @param BancoBrasilConfiguration $brasilConfiguration
      */
     public function __construct(BancoBrasilConfiguration $brasilConfiguration)
     {
-        $this->httpRequest = new HttpRequest();
+        parent::__construct(new BancoBrasilRequestToken($brasilConfiguration));
 
-        $this->brasilToken = new BancoBrasilToken($brasilConfiguration);
+        $this->httpRequestBancoBrasil = new HttpRequestBancoBrasil($brasilConfiguration);
 
         $this->brasilConfiguration = $brasilConfiguration;
+
+        $this->baseValidator = new BaseValidator();
     }
 
     /**
+     * @param BancoBrasil|PixDataInterface $data
+     * @return mixed
      * @throws HttpRequestException
      */
-    public function generateToken(): array
+    public function generateCharge(BancoBrasil|PixDataInterface $data): mixed
     {
-        return $this->brasilToken->generateToken();
+        $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/';
+        $options = array(
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => $this->token->getBearerToken()
+            ],
+            'body' => json_encode($data)
+        );
+
+        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::PUT, $url, $options);
     }
 
-    public function generateCharge()
+    /**
+     * @param BancoBrasil|PixFilterInterface|null $data
+     * @return mixed
+     * @throws HttpRequestException
+     */
+    public function queryPix(BancoBrasil|PixFilterInterface $data = null)
     {
-        // TODO: Implement generateCharge() method.
+        $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/';
+        $options = array(
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => $this->token->getBearerToken(),
+            ],
+            'query' => get_object_vars($data)
+        );
+        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::GET, $url, $options);
     }
 
-    public function queryPix()
+    /**
+     * @param $id
+     * @return mixed
+     * @throws HttpRequestException
+     */
+    public function queryPixId($id): mixed
     {
-        // TODO: Implement getPix() method.
+        $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/' .$id;
+        $options = array(
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => $this->token->getBearerToken()
+            ]
+        );
+        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::GET, $url, $options);
     }
 
-    public function reviewCharge()
+    /**
+     * @param $id
+     * @param $data
+     * @return mixed
+     * @throws HttpRequestException
+     */
+    public function reviewCharge($id, $data): mixed
     {
-        // TODO: Implement ReviewCharge() method.
+        $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/' .$id;
+
+        $options = array(
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => $this->token->getBearerToken()
+            ],
+            'body' => json_encode($data)
+        );
+        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::PATCH, $url, $options);
     }
 
 }
