@@ -9,44 +9,46 @@ class Calendar extends AbstractPixEntity
 {
     use JsonWithOutNull;
 
-    private ?string $create = null;
+    private ?\DateTime $criacao = null;
 
-    private ?string $expiration = null;
+    private ?string $expiracao = null;
 
     /**
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getCreate(): ?string
+    public function getCriacao(): ?\DateTime
     {
-        return $this->create;
+        return $this->criacao;
     }
 
     /**
-     * @param string|null $create
+     * @param \DateTime|null $criacao
      * @return Calendar
      */
-    public function setCreate(?string $create): self
+    public function setCriacao(?\DateTime $criacao): self
     {
-        $this->create = $create;
+        $this->criacao = $criacao;
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getExpiration(): ?string
+    public function getExpiracao(): ?string
     {
-        return $this->expiration;
+        return $this->expiracao;
     }
 
     /**
-     * @param string|null $expiration
+     * @param string|null $expiracao
      * @return Calendar
      */
-    public function setExpiration(?string $expiration): self
+    public function setExpiracao(?string $expiracao): self
     {
-        $this->expiration = $expiration;
+        $this->expiracao = $expiracao;
         return $this;
     }
+
+
 
 }

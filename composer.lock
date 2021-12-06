@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3606888d163ec02d50d297715680932b",
+    "content-hash": "150f56e38fd872088a8549b6c261a0e2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -77,6 +77,75 @@
                 "source": "https://github.com/doctrine/annotations/tree/1.13.2"
             },
             "time": "2021-08-05T19:00:23+00:00"
+        },
+        {
+            "name": "doctrine/collections",
+            "version": "1.6.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/collections.git",
+                "reference": "1958a744696c6bb3bb0d28db2611dc11610e78af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/1958a744696c6bb3bb0d28db2611dc11610e78af",
+                "reference": "1958a744696c6bb3bb0d28db2611dc11610e78af",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.1.5",
+                "vimeo/psalm": "^4.2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Collections\\": "lib/Doctrine/Common/Collections"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Collections library that adds additional functionality on top of PHP arrays.",
+            "homepage": "https://www.doctrine-project.org/projects/collections.html",
+            "keywords": [
+                "array",
+                "collections",
+                "iterators",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/collections/issues",
+                "source": "https://github.com/doctrine/collections/tree/1.6.8"
+            },
+            "time": "2021-08-10T18:51:53+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -160,16 +229,16 @@
         },
         {
             "name": "futuralibs/futurautils",
-            "version": "0.1.9",
+            "version": "0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/futurasistemas13/futurautils.git",
-                "reference": "63a5340e24461696784b05e6e1ee3fca5a9fb317"
+                "reference": "999659c05a7e1a3cd6d41213595403f428f1cc0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/futurasistemas13/futurautils/zipball/63a5340e24461696784b05e6e1ee3fca5a9fb317",
-                "reference": "63a5340e24461696784b05e6e1ee3fca5a9fb317",
+                "url": "https://api.github.com/repos/futurasistemas13/futurautils/zipball/999659c05a7e1a3cd6d41213595403f428f1cc0b",
+                "reference": "999659c05a7e1a3cd6d41213595403f428f1cc0b",
                 "shasum": ""
             },
             "require": {
@@ -191,9 +260,9 @@
             "description": "Biblioteca contendo funções reutilizadas em outros projetos/bibliotecas",
             "support": {
                 "issues": "https://github.com/futurasistemas13/futurautils/issues",
-                "source": "https://github.com/futurasistemas13/futurautils/tree/0.1.9"
+                "source": "https://github.com/futurasistemas13/futurautils/tree/0.2.2"
             },
-            "time": "2021-12-02T20:19:09+00:00"
+            "time": "2021-12-06T14:58:40+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

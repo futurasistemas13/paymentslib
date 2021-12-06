@@ -4,12 +4,25 @@ namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity;
 
 use Futuralibs\Paymentslib\Interface\Pix\PixDataInterface;
 use Futuralibs\Paymentslib\Payment\Pix\AbstractPixEntity;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response\BancoBrasilResponse;
+use Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus;
 use Symfony\Component\Validator\Constraints as Assert;
 use Futuralibs\Futurautils\Trait\JsonSerializable\JsonWithOutNull;
+use Futuralibs\Futurautils\Constraint as FuturaConstraint;
 
 class BancoBrasil extends AbstractPixEntity implements PixDataInterface
 {
     use JsonWithOutNull;
+
+    /**
+     * @var string|null
+     * @FuturaConstraint\Optional({
+     *      @Assert\NotBlank,
+     *      @Assert\NotNull,
+     *      @Assert\Choice(callback={"Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus", "getArray"})
+     * })
+     */
+    private ?string $status = null;
 
     /**
      * @var Calendar
@@ -18,10 +31,10 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
     private Calendar $calendario;
 
     /**
-     * @var BancoBrasilDocument
+     * @var Client
      * @Assert\Valid
      */
-    private BancoBrasilDocument $devedor;
+    private Client $devedor;
 
     /**
      * @var Value
@@ -32,6 +45,7 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
     /**
      * @var string
      * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private string $chave;
 
@@ -39,9 +53,27 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
 
     public function __construct()
     {
-        $this->devedor = new BancoBrasilDocument();
+        $this->devedor = new Client();
         $this->calendario =  new Calendar();
         $this->valor = new Value();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param TypeBancoBrasilStatus|null $status
+     * @return BancoBrasilResponse
+     */
+    public function setStatus(?TypeBancoBrasilStatus $status): self
+    {
+        $this->status = $status->name;
+        return $this;
     }
 
     /**
@@ -53,9 +85,9 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
     }
 
     /**
-     * @return BancoBrasilDocument
+     * @return Client
      */
-    public function Devedor(): BancoBrasilDocument
+    public function Devedor(): Client
     {
        return $this->devedor;
     }

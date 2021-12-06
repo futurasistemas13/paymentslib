@@ -23,7 +23,7 @@ final class PixPaymentFactory implements FactoryInterface, PixInterface
      */
     public function __construct(BankConfigurationInterface $bankConfiguration)
     {
-        if ($bankConfiguration->getTypeBank() === TypeBank::BancoBrasil->value){
+        if ($bankConfiguration->getTypeBank() === TypeBank::BancoBrasil->value) {
             $this->pixPayment = new BancoBrasilMethods($bankConfiguration);
         }
 

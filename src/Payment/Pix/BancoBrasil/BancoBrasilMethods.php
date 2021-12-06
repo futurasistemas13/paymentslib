@@ -11,7 +11,11 @@ use Futuralibs\Paymentslib\Interface\Pix\PixInterface;
 use Futuralibs\Paymentslib\Payment\Pix\AbstractPixBank;
 use Futuralibs\Futurautils\Type\TypeHttpMethod;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity\BancoBrasil;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Filter\BancoBrasilFilter;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilQueryResponseTransformer;
 use Futuralibs\Paymentslib\Validator\BaseValidator;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilResponseTransformer;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilQueryIdResponseTransformer;
 
 
 final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
@@ -21,6 +25,12 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
     private HttpRequestBancoBrasil $httpRequestBancoBrasil;
 
     private BancoBrasilConfiguration $brasilConfiguration;
+
+    private BancoBrasilResponseTransformer $brasilResponseTransformer;
+
+    private BancoBrasilQueryResponseTransformer $brasilQueryResponseTransformer;
+
+    private BancoBrasilQueryIdResponseTransformer $brasilQueryIdResponseTransformer;
 
     /**
      * @param BancoBrasilConfiguration $brasilConfiguration
@@ -34,33 +44,48 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
         $this->brasilConfiguration = $brasilConfiguration;
 
         $this->baseValidator = new BaseValidator();
+
+        $this->brasilResponseTransformer = new BancoBrasilResponseTransformer();
+
+        $this->brasilQueryResponseTransformer = new BancoBrasilQueryResponseTransformer();
+
+        $this->brasilQueryIdResponseTransformer = new BancoBrasilQueryIdResponseTransformer();
     }
 
     /**
-     * @param BancoBrasil|PixDataInterface $data
+     * @param BancoBrasil $data
      * @return mixed
      * @throws HttpRequestException
      */
-    public function generateCharge(BancoBrasil|PixDataInterface $data): mixed
+    public function generateCharge(PixDataInterface $data): mixed
     {
+
+        $error = $this->baseValidator->validateBase($data);
+
+        if (count($error) > 0) {
+            throw new HttpRequestException('asdasdasdas');
+        }
+
         $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/';
         $options = array(
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => $this->token->getBearerToken()
+                'Authorization' => $this->token->getBearerToken(),
             ],
             'body' => json_encode($data)
         );
 
-        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::PUT, $url, $options);
+        return $this->brasilResponseTransformer->transformFromObject(
+            $this->httpRequestBancoBrasil->request(TypeHttpMethod::PUT, $url, $options)
+        );
     }
 
     /**
-     * @param BancoBrasil|PixFilterInterface|null $data
+     * @param BancoBrasilFilter|null $data
      * @return mixed
      * @throws HttpRequestException
      */
-    public function queryPix(BancoBrasil|PixFilterInterface $data = null)
+    public function queryPix(PixFilterInterface $data = null): mixed
     {
         $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/';
         $options = array(
@@ -70,7 +95,11 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
             ],
             'query' => get_object_vars($data)
         );
-        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::GET, $url, $options);
+
+        return $this->brasilQueryResponseTransformer->transformFromObjects(
+            $this->httpRequestBancoBrasil->request(TypeHttpMethod::GET, $url, $options)['pix']
+        );
+
     }
 
     /**
@@ -87,12 +116,15 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
                 'Authorization' => $this->token->getBearerToken()
             ]
         );
-        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::GET, $url, $options);
+
+        return $this->brasilQueryIdResponseTransformer->transformFromObject(
+            $this->httpRequestBancoBrasil->request(TypeHttpMethod::GET, $url, $options)
+        );
     }
 
     /**
      * @param $id
-     * @param $data
+     * @param BancoBrasil $data
      * @return mixed
      * @throws HttpRequestException
      */
@@ -105,9 +137,11 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
                 'Content-Type' => 'application/json',
                 'Authorization' => $this->token->getBearerToken()
             ],
-            'body' => json_encode($data)
+            'body' => json_encode(['status' => $data->getStatus()])
         );
-        return $this->httpRequestBancoBrasil->request(TypeHttpMethod::PATCH, $url, $options);
+        return $this->brasilResponseTransformer->transformFromObject(
+            $this->httpRequestBancoBrasil->request(TypeHttpMethod::PATCH, $url, $options)
+        );
     }
 
 }
