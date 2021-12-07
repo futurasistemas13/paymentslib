@@ -5,23 +5,23 @@ namespace Futuralibs\Paymentslib\Exception;
 
 use Exception;
 use Throwable;
-use Symfony\Component\HttpFoundation\Response;
+use Futuralibs\Futurautils\Type\Http\TypeHttpCode;
 
 class ValidationException extends Exception
 {
     private array $violations;
-    private int $statusCode;
+    private TypeHttpCode $statusCode;
     private array $headers;
 
     /**
      * ValidationException constructor.
-     * @param int $statusCode
+     * @param TypeHttpCode $statusCode
      * @param array|null $violations
      * @param Throwable|null $previous
      * @param array $headers
      * @param int|null $code
      */
-    public function __construct(array $violations = null, int $statusCode = Response::HTTP_BAD_REQUEST, Throwable $previous = null, array $headers = [], ?int $code = 0)
+    public function __construct(array $violations = null, TypeHttpCode $statusCode = TypeHttpCode::HTTP_BAD_REQUEST, Throwable $previous = null, array $headers = [], ?int $code = 0)
     {
         $this->violations = $violations;
         $this->statusCode = $statusCode;
@@ -43,7 +43,7 @@ class ValidationException extends Exception
      */
     public function getStatusCode(): int
     {
-        return $this->statusCode;
+        return $this->statusCode->value;
     }
 
     /**

@@ -2,3 +2,4 @@
 /docker
 index.php
 /vendor
+xdebug.log
