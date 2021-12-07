@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Interface\Bank;
 
-
 use Futuralibs\Futurautils\Type\TypeEnvironment;
 
 interface BankConfigurationInterface

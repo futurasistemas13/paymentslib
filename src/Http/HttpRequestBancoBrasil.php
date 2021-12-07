@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Http;
 
-
 use Futuralibs\Paymentslib\Exception\HttpRequestException;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\BancoBrasilConfiguration;
 use Futuralibs\Futurautils\Type\TypeEnvironment;

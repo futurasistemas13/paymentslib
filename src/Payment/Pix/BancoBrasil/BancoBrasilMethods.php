@@ -16,6 +16,9 @@ use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilQueryR
 use Futuralibs\Paymentslib\Validator\BaseValidator;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilResponseTransformer;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilQueryIdResponseTransformer;
+use Futuralibs\Paymentslib\Exception\ValidationException;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response\BancoBrasilResponse;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response\BancoBrasilQueryIdResponse;
 
 
 final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
@@ -54,16 +57,17 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
 
     /**
      * @param BancoBrasil $data
-     * @return mixed
+     * @return BancoBrasilResponse
      * @throws HttpRequestException
+     * @throws ValidationException
      */
-    public function generateCharge(PixDataInterface $data): mixed
+    public function generateCharge(PixDataInterface $data): BancoBrasilResponse
     {
 
         $error = $this->baseValidator->validateBase($data);
 
         if (count($error) > 0) {
-            throw new HttpRequestException('asdasdasdas');
+            throw new ValidationException($error) ;
         }
 
         $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/';
@@ -82,10 +86,10 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
 
     /**
      * @param BancoBrasilFilter|null $data
-     * @return mixed
+     * @return iterable
      * @throws HttpRequestException
      */
-    public function queryPix(PixFilterInterface $data = null): mixed
+    public function queryPix(PixFilterInterface $data = null): iterable
     {
         $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/';
         $options = array(
@@ -104,10 +108,10 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
 
     /**
      * @param $id
-     * @return mixed
+     * @return BancoBrasilQueryIdResponse
      * @throws HttpRequestException
      */
-    public function queryPixId($id): mixed
+    public function queryPixId($id): BancoBrasilQueryIdResponse
     {
         $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/' .$id;
         $options = array(
@@ -125,10 +129,10 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
     /**
      * @param $id
      * @param BancoBrasil $data
-     * @return mixed
+     * @return BancoBrasilResponse
      * @throws HttpRequestException
      */
-    public function reviewCharge($id, $data): mixed
+    public function reviewCharge($id, $data): BancoBrasilResponse
     {
         $url = $this->brasilConfiguration->getUrlEnvironment(). '/pix/v1/cob/' .$id;
 

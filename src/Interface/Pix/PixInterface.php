@@ -10,11 +10,11 @@ interface PixInterface
 
     public function refreshToken();
 
-    public function generateCharge(PixDataInterface $data);
+    public function generateCharge(PixDataInterface $data) : PixResponseInterface;
 
-    public function queryPix(PixFilterInterface $data = null);
+    public function queryPix(PixFilterInterface $data = null): iterable;
 
-    public function queryPixId($id);
+    public function queryPixId($id): PixResponseInterface;
 
-    public function reviewCharge($id, $data);
+    public function reviewCharge($id, $data): PixResponseInterface;
 }

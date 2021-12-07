@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Futuralibs\Paymentslib\Factory;
 
 use Futuralibs\Paymentslib\Exception\HttpRequestException;
+use Futuralibs\Paymentslib\Exception\ValidationException;
 use Futuralibs\Paymentslib\Interface\Factory\FactoryInterface;
 use Futuralibs\Paymentslib\Interface\Pix\PixDataInterface;
 use Futuralibs\Paymentslib\Interface\Pix\PixFilterInterface;
@@ -11,6 +12,7 @@ use Futuralibs\Paymentslib\Interface\Pix\PixInterface;
 use Futuralibs\Paymentslib\Type\TypeBank;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\BancoBrasilMethods;
 use Futuralibs\Paymentslib\Interface\Bank\BankConfigurationInterface;
+use Futuralibs\Paymentslib\Interface\Pix\PixResponseInterface;
 
 final class PixPaymentFactory implements FactoryInterface, PixInterface
 {
@@ -47,8 +49,9 @@ final class PixPaymentFactory implements FactoryInterface, PixInterface
 
     /**
      * @throws HttpRequestException
+     * @throws ValidationException
      */
-    public function generateCharge(PixDataInterface $data)
+    public function generateCharge(PixDataInterface $data): PixResponseInterface
     {
         return $this->pixPayment->generateCharge($data);
     }
@@ -56,7 +59,7 @@ final class PixPaymentFactory implements FactoryInterface, PixInterface
     /**
      * @throws HttpRequestException
      */
-    public function queryPix(PixFilterInterface $data = null)
+    public function queryPix(PixFilterInterface $data = null): iterable
     {
         return $this->pixPayment->queryPix($data);
     }
@@ -64,7 +67,7 @@ final class PixPaymentFactory implements FactoryInterface, PixInterface
     /**
      * @throws HttpRequestException
      */
-    public function queryPixId($id)
+    public function queryPixId($id): PixResponseInterface
     {
         return $this->pixPayment->queryPixId($id);
     }
@@ -72,7 +75,7 @@ final class PixPaymentFactory implements FactoryInterface, PixInterface
     /**
      * @throws HttpRequestException
      */
-    public function reviewCharge($id, $data)
+    public function reviewCharge($id, $data): PixResponseInterface
     {
         return $this->pixPayment->reviewCharge($id, $data);
     }

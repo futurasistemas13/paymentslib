@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response;
 
-use Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity\BancoBrasil;
+use Futuralibs\Paymentslib\Interface\Pix\PixResponseInterface;
 
-class BancoBrasilResponse extends BancoBrasil
+class BancoBrasilResponse extends BancoBrasil implements PixResponseInterface
 {
 
     private string $location;
