@@ -6,7 +6,7 @@ namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class BancoBrasilQueryIdResponse extends BancoBrasilResponse implements PixResponseInterface
+class BancoBrasilQueryIdResponse extends BancoBrasilResponse
 {
     private $pix;
 
