@@ -6,7 +6,7 @@ namespace Futuralibs\Paymentslib\Http;
 use Futuralibs\Paymentslib\Exception\HttpRequestException;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\BancoBrasilConfiguration;
 use Futuralibs\Futurautils\Type\TypeEnvironment;
-use Futuralibs\Futurautils\Type\TypeHttpMethod;
+use Futuralibs\Futurautils\Type\Http\TypeHttpMethod;
 
 class HttpRequestBancoBrasil extends HttpRequestInterface
 {
