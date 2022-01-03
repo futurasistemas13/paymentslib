@@ -7,7 +7,7 @@ use Futuralibs\Paymentslib\Exception\HttpRequestException;
 use Futuralibs\Paymentslib\Http\HttpRequestInterface;
 use Futuralibs\Paymentslib\Interface\Token\TokenInterface;
 use Futuralibs\Futurautils\Type\TypeEnvironment;
-use Futuralibs\Futurautils\Type\TypeHttpMethod;
+use Futuralibs\Futurautils\Type\Http\TypeHttpMethod;
 use Futuralibs\Paymentslib\Type\TypeScopePix;
 
 final class BancoBrasilRequestToken implements TokenInterface

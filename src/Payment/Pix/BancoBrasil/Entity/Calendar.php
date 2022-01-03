@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity;
 
+use Futuralibs\Futurautils\Type\TypeAttributeIgnore;
 use Futuralibs\Paymentslib\Payment\Pix\AbstractPixEntity;
 use Futuralibs\Futurautils\Trait\JsonSerializable\JsonWithOutNull;
 
@@ -10,8 +11,10 @@ class Calendar extends AbstractPixEntity
 {
     use JsonWithOutNull;
 
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
     private ?\DateTime $criacao = null;
 
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
     private ?string $expiracao = null;
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity;
 
 use Futuralibs\Futurautils\Trait\JsonSerializable\JsonWithOutNull;
+use Futuralibs\Futurautils\Type\TypeAttributeIgnore;
 use Futuralibs\Paymentslib\Payment\Pix\AbstractPixEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Futuralibs\Futurautils\Constraint as FuturaConstraint;
@@ -27,6 +28,7 @@ class Client extends AbstractPixEntity
      *      @FuturaConstraint\CpfCnpj(cpf="true")
      * })
      */
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
     private ?string $cpf = null;
 
     /**
@@ -44,6 +46,7 @@ class Client extends AbstractPixEntity
      *      @FuturaConstraint\CpfCnpj(cnpj="true")
      * })
      */
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
     private ?string $cnpj = null;
 
     /**

@@ -10,10 +10,12 @@ use Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus;
 use Symfony\Component\Validator\Constraints as Assert;
 use Futuralibs\Futurautils\Trait\JsonSerializable\JsonWithOutNull;
 use Futuralibs\Futurautils\Constraint as FuturaConstraint;
+use Futuralibs\Futurautils\Type\TypeAttributeIgnore;
 
 class BancoBrasil extends AbstractPixEntity implements PixDataInterface
 {
     use JsonWithOutNull;
+
 
     /**
      * @var string|null
@@ -23,6 +25,7 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
      *      @Assert\Choice(callback={"Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus", "getArray"})
      * })
      */
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
     private ?string $status = null;
 
     /**
@@ -50,6 +53,7 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
      */
     private string $chave;
 
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
     private ?string $solicitacaoPagador = null;
 
     public function __construct()
