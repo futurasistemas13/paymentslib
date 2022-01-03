@@ -31,7 +31,7 @@ class HttpRequestBancoBrasil extends HttpRequestInterface
     {
         if ($this->brasilConfiguration->getEnvironment() === TypeEnvironment::SandBox) {
             $appKey = array(
-                'gw-dev-app-key' => $this->brasilConfiguration->getApplicationKey()
+                'gw-dev-app-key' => $this->brasilConfiguration->getDeveloperApplicationKey()
             );
             if (isset($options['query'])) {
                 $options['query'] = array_merge($options['query'], $appKey);
