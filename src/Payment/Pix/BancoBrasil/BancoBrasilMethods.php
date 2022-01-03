@@ -9,7 +9,7 @@ use Futuralibs\Paymentslib\Interface\Pix\PixDataInterface;
 use Futuralibs\Paymentslib\Interface\Pix\PixFilterInterface;
 use Futuralibs\Paymentslib\Interface\Pix\PixInterface;
 use Futuralibs\Paymentslib\Payment\Pix\AbstractPixBank;
-use Futuralibs\Futurautils\Type\TypeHttpMethod;
+use Futuralibs\Futurautils\Type\Http\TypeHttpMethod;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity\BancoBrasil;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Filter\BancoBrasilFilter;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer\BancoBrasilQueryResponseTransformer;
