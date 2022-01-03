@@ -18,7 +18,7 @@ final class BancoBrasilConfiguration implements BankConfigurationInterface
 
     private string $client_secret;
 
-    private string $application_key;
+    private string $developer_application_key;
 
     private string $basic;
 
@@ -100,18 +100,18 @@ final class BancoBrasilConfiguration implements BankConfigurationInterface
     /**
      * @return string
      */
-    public function getApplicationKey(): string
+    public function getDeveloperApplicationKey(): string
     {
-        return $this->application_key;
+        return $this->developer_application_key;
     }
 
     /**
-     * @param string $application_key
+     * @param string $developer_application_key
      * @return BancoBrasilConfiguration
      */
-    public function setApplicationKey(string $application_key): BancoBrasilConfiguration
+    public function setDeveloperApplicationKey(string $developer_application_key): BancoBrasilConfiguration
     {
-        $this->application_key = $application_key;
+        $this->developer_application_key = $developer_application_key;
         return $this;
     }
 
