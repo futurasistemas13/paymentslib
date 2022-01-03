@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Futuralibs\Paymentslib\Http;
 
 use Futuralibs\Paymentslib\Interface\HttpClient\HttpClientInterface;
-use Futuralibs\Futurautils\Type\TypeHttpMethod;
+use Futuralibs\Futurautils\Type\Http\TypeHttpMethod;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Futuralibs\Paymentslib\Interface\HttpClient;
 
-use Futuralibs\Futurautils\Type\TypeHttpMethod;
+use Futuralibs\Futurautils\Type\Http\TypeHttpMethod;
 
 interface HttpClientInterface
 {
