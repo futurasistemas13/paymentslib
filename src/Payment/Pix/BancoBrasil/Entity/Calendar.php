@@ -11,10 +11,10 @@ class Calendar extends AbstractPixEntity
 {
     use JsonWithOutNull;
 
-    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
     private ?\DateTime $criacao = null;
 
-    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
     private ?string $expiracao = null;
 
     /**

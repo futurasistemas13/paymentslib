@@ -28,7 +28,7 @@ class Client extends AbstractPixEntity
      *      @FuturaConstraint\CpfCnpj(cpf="true")
      * })
      */
-    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
     private ?string $cpf = null;
 
     /**
@@ -46,7 +46,7 @@ class Client extends AbstractPixEntity
      *      @FuturaConstraint\CpfCnpj(cnpj="true")
      * })
      */
-    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
     private ?string $cnpj = null;
 
     /**
@@ -54,6 +54,7 @@ class Client extends AbstractPixEntity
      * @Assert\NotBlank
      * @Assert\NotNull
      */
+    #[Serializable()]
     private string $nome;
 
     /**

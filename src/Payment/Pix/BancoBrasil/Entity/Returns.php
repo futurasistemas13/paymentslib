@@ -8,14 +8,19 @@ use Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilReturnStatus;
 class Returns
 {
 
+    #[Serializable()]
     private string $id;
 
+    #[Serializable()]
     private string $rtrId;
 
+    #[Serializable()]
     private string $valor;
 
+    #[Serializable()]
     private Schedule $horario;
 
+    #[Serializable()]
     private string $status;
 
     public function __construct()

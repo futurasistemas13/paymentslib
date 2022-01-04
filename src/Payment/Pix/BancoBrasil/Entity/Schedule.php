@@ -5,8 +5,10 @@ namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity;
 
 class Schedule
 {
+    #[Serializable()]
     private string $solicitacao;
 
+    #[Serializable()]
     private string $liquidacao;
 
     /**

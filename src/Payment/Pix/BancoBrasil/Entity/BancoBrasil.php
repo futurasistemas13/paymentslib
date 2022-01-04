@@ -25,25 +25,28 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
      *      @Assert\Choice(callback={"Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus", "getArray"})
      * })
      */
-    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
     private ?string $status = null;
 
     /**
      * @var Calendar
      * @Assert\Valid
      */
+    #[Serializable()]
     private Calendar $calendario;
 
     /**
      * @var Client
      * @Assert\Valid
      */
+    #[Serializable()]
     private Client $devedor;
 
     /**
      * @var Value
      * @Assert\Valid
      */
+    #[Serializable()]
     private Value $valor;
 
     /**
@@ -51,9 +54,10 @@ class BancoBrasil extends AbstractPixEntity implements PixDataInterface
      * @Assert\NotBlank
      * @Assert\NotNull
      */
+    #[Serializable()]
     private string $chave;
 
-    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreEmpty])]
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
     private ?string $solicitacaoPagador = null;
 
     public function __construct()

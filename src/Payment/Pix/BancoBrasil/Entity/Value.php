@@ -9,6 +9,7 @@ use Futuralibs\Paymentslib\Serializer\JsonSerializer;
 class Value extends AbstractPixEntity
 {
 
+    #[Serializable()]
     private string $original;
 
     /**

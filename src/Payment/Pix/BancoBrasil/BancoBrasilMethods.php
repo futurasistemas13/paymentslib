@@ -63,7 +63,6 @@ final class BancoBrasilMethods extends AbstractPixBank implements PixInterface
      */
     public function generateCharge(PixDataInterface $data): BancoBrasilResponse
     {
-
         $error = $this->baseValidator->validateBase($data);
 
         if (count($error) > 0) {
