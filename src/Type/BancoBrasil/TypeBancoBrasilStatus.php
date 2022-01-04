@@ -13,4 +13,16 @@ enum TypeBancoBrasilStatus: String{
     case CONCLUIDA = 'CONCLUIDA';
     case REMOVIDA_PELO_USUARIO_RECEBEDOR = 'REMOVIDA_PELO_USUARIO_RECEBEDOR';
     case REMOVIDA_PELO_PSP  = 'REMOVIDA_PELO_PSP ';
+
+    public function getIndex(): int
+    {
+        return match($this)
+        {
+            self::ATIVA => 1,
+            self::CONCLUIDA => 2,
+            self::REMOVIDA_PELO_USUARIO_RECEBEDOR => 3,
+            self::REMOVIDA_PELO_PSP => 4,
+        };
+    }
+
 }
