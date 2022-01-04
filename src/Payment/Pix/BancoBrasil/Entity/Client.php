@@ -20,8 +20,8 @@ class Client extends AbstractPixEntity
      *      @Assert\NotBlank,
      *      @Assert\NotNull,
      *      @Assert\Length(
-     *          min = 14,
-     *          max = 14,
+     *          min = 11,
+     *          max = 11,
      *          minMessage = "Your cpf must be at least {{ limit }} characters long",
      *          maxMessage = "Your cpf cannot be longer than {{ limit }} characters",
      *      ),
@@ -38,8 +38,8 @@ class Client extends AbstractPixEntity
      *      @Assert\NotBlank,
      *      @Assert\NotNull,
      *      @Assert\Length(
-     *          min = 18,
-     *          max = 18,
+     *          min = 14,
+     *          max = 14,
      *          minMessage = "Your cnpj must be at least {{ limit }} characters long",
      *          maxMessage = "Your cnpj cannot be longer than {{ limit }} characters",
      *      ),
@@ -71,7 +71,7 @@ class Client extends AbstractPixEntity
      */
     public function setCpf(?string $cpf): self
     {
-        $this->cpf = $cpf;
+        $this->cpf = preg_replace('/[^0-9]/', '', $cpf);
         return $this;
     }
 
@@ -89,7 +89,7 @@ class Client extends AbstractPixEntity
      */
     public function setCnpj(?string $cnpj): self
     {
-        $this->cnpj = $cnpj;
+        $this->cnpj = preg_replace('/[^0-9]/', '', $cnpj);
         return $this;
     }
 
