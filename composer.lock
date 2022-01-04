@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5d69cc9d5a4dc9db8a890a2818b6baa",
+    "content-hash": "c7b972cf823a9a85cfe591966f3f3aa9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -229,16 +229,16 @@
         },
         {
             "name": "futuralibs/futurautils",
-            "version": "0.3.5",
+            "version": "0.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/futurasistemas13/futurautils.git",
-                "reference": "34dcef21f81b398f6b962bda734683936a8d3388"
+                "reference": "6cf88c95111d7a6df977e44d0bdef9e3b7125950"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/futurasistemas13/futurautils/zipball/34dcef21f81b398f6b962bda734683936a8d3388",
-                "reference": "34dcef21f81b398f6b962bda734683936a8d3388",
+                "url": "https://api.github.com/repos/futurasistemas13/futurautils/zipball/6cf88c95111d7a6df977e44d0bdef9e3b7125950",
+                "reference": "6cf88c95111d7a6df977e44d0bdef9e3b7125950",
                 "shasum": ""
             },
             "require": {
@@ -260,9 +260,9 @@
             "description": "Biblioteca contendo funções reutilizadas em outros projetos/bibliotecas",
             "support": {
                 "issues": "https://github.com/futurasistemas13/futurautils/issues",
-                "source": "https://github.com/futurasistemas13/futurautils/tree/0.3.5"
+                "source": "https://github.com/futurasistemas13/futurautils/tree/0.3.6"
             },
-            "time": "2022-01-04T19:12:37+00:00"
+            "time": "2022-01-04T19:34:31+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
