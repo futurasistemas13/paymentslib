@@ -20,8 +20,8 @@ class Client extends AbstractPixEntity
      *      @Assert\NotBlank,
      *      @Assert\NotNull,
      *      @Assert\Length(
-     *          min = 10,
-     *          max = 11,
+     *          min = 14,
+     *          max = 14,
      *          minMessage = "Your cpf must be at least {{ limit }} characters long",
      *          maxMessage = "Your cpf cannot be longer than {{ limit }} characters",
      *      ),
@@ -38,8 +38,8 @@ class Client extends AbstractPixEntity
      *      @Assert\NotBlank,
      *      @Assert\NotNull,
      *      @Assert\Length(
-     *          min = 10,
-     *          max = 11,
+     *          min = 18,
+     *          max = 18,
      *          minMessage = "Your cnpj must be at least {{ limit }} characters long",
      *          maxMessage = "Your cnpj cannot be longer than {{ limit }} characters",
      *      ),
