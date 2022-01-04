@@ -6,7 +6,7 @@ namespace Futuralibs\Paymentslib\Type\BancoBrasil;
 use Exception;
 use Futuralibs\Futurautils\Trait\EnumTrait;
 
-enum TypeBancoBrasilStatus: int{
+enum TypeBancoBrasilStatus: int {
 
     use EnumTrait;
 
@@ -23,21 +23,6 @@ enum TypeBancoBrasilStatus: int{
             self::CONCLUIDA => 'CONCLUIDA',
             self::REMOVIDA_PELO_USUARIO_RECEBEDOR => 'REMOVIDA_PELO_USUARIO_RECEBEDOR',
             self::REMOVIDA_PELO_PSP => 'REMOVIDA_PELO_PSP',
-        };
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function find(string $status): TypeBancoBrasilStatus
-    {
-        return match($status)
-        {
-            self::ATIVA->getName() => self::ATIVA,
-            self::CONCLUIDA->getName() => self::CONCLUIDA,
-            self::REMOVIDA_PELO_USUARIO_RECEBEDOR->getName() => self::REMOVIDA_PELO_USUARIO_RECEBEDOR,
-            self::REMOVIDA_PELO_PSP->getName() => self::REMOVIDA_PELO_PSP,
-            default => throw new Exception('Unexpected match value'),
         };
     }
 

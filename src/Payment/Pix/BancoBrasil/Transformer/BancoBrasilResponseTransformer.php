@@ -12,6 +12,7 @@ final class BancoBrasilResponseTransformer extends AbstractBancoBrasilTransforme
     /**
      * @param array $object
      * @return BancoBrasilResponse
+     * @throws \Exception
      */
     public function transformFromObject($object): BancoBrasilResponse
     {
@@ -28,7 +29,7 @@ final class BancoBrasilResponseTransformer extends AbstractBancoBrasilTransforme
                 ->setOriginal($object['valor']['original']);
 
         $bancoBrasilResponse
-            ->setStatus(TypeBancoBrasilStatus::from($object['status']))
+            ->setStatus(TypeBancoBrasilStatus::find($object['status']))
             ->setLocation($object['location'])
             ->setTxid($object['txid'])
             ->setRevisao($object['revisao'])
