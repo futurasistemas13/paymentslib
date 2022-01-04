@@ -11,7 +11,7 @@ enum TypeBank: String {
 
     case BancoBrasil = '001';
 
-    public function bank(): string
+    public function getName(): string
     {
         return match($this)
         {
