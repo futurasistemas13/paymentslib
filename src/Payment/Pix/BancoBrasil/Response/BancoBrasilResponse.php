@@ -15,9 +15,6 @@ class BancoBrasilResponse extends BancoBrasil implements PixResponseInterface
 
     private int $revisao;
 
-    /**
-     * @param string $status
-     */
     public function __construct()
     {
         parent::__construct();

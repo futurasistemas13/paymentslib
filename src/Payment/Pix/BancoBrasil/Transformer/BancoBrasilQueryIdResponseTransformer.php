@@ -27,7 +27,7 @@ class BancoBrasilQueryIdResponseTransformer extends AbstractBancoBrasilTransform
     {
         $bancoBrasilQueryIdResponse = new BancoBrasilQueryIdResponse();
         $bancoBrasilQueryIdResponse
-            ->setStatus(TypeBancoBrasilStatus::from($object['status']))
+            ->setStatus(TypeBancoBrasilStatus::find($object['status']))
             ->setLocation($object['location'])
             ->setTxid($object['txid'])
             ->setRevisao($object['revisao'])
