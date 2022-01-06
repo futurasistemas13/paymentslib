@@ -28,6 +28,8 @@ class BancoBrasilQueryIdResponseTransformer extends AbstractBancoBrasilTransform
     {
         $bancoBrasilQueryIdResponse = new BancoBrasilQueryIdResponse();
 
+        $teste = new \DateTime($object['calendario']['criacao']);
+
         $bancoBrasilQueryIdResponse
             ->Calendario()
                 ->setCriacao(new \DateTime($object['calendario']['criacao']))

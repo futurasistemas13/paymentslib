@@ -53,6 +53,16 @@ class Calendar extends AbstractPixEntity
         return $this;
     }
 
-
+    /**
+     * @param string $format
+     * @return array
+     */
+    public function getFormatedDateTime(string $format): array
+    {
+        return [
+            'criacao' => $this->getCriacao()->format($format),
+            'expiracao' => $this->getExpiracao()
+        ];
+    }
 
 }
