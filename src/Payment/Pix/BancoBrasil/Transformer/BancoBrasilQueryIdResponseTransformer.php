@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Transformer;
 
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\AbstractBancoBrasilTransformer;
+use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Entity\Value;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response\BancoBrasilQueryIdResponse;
 use Futuralibs\Paymentslib\Type\BancoBrasil\TypeBancoBrasilStatus;
 use Futuralibs\Paymentslib\Payment\Pix\BancoBrasil\Response\BancoBrasilQueryResponse;
@@ -26,6 +27,16 @@ class BancoBrasilQueryIdResponseTransformer extends AbstractBancoBrasilTransform
     public function transformFromObject($object): BancoBrasilQueryIdResponse
     {
         $bancoBrasilQueryIdResponse = new BancoBrasilQueryIdResponse();
+
+        $bancoBrasilQueryIdResponse
+            ->Calendario()
+                ->setCriacao(new \DateTime($object['calendario']['criacao']))
+                ->setExpiracao($object['calendario']['expiracao']);
+
+        $bancoBrasilQueryIdResponse
+            ->Valor()
+                ->setOriginal($object['valor']['original']);
+
         $bancoBrasilQueryIdResponse
             ->setStatus(TypeBancoBrasilStatus::find($object['status']))
             ->setLocation($object['location'])
@@ -33,6 +44,7 @@ class BancoBrasilQueryIdResponseTransformer extends AbstractBancoBrasilTransform
             ->setRevisao($object['revisao'])
             ->setSolicitacaoPagador($object['solicitacaoPagador'])
             ->setChave($object['chave']);
+
 
         if (isset($object['pix']) && (count($object['pix']) > 0)) {
             foreach ($object['pix'] as $pix) {

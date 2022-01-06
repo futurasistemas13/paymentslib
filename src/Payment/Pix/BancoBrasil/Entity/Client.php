@@ -54,8 +54,8 @@ class Client extends AbstractPixEntity
      * @Assert\NotBlank
      * @Assert\NotNull
      */
-    #[Serializable()]
-    private string $nome;
+    #[Serializable(ignore: [TypeAttributeIgnore::IgnoreNull])]
+    private ?string $nome = null;
 
     /**
      * @return string|null
@@ -94,18 +94,18 @@ class Client extends AbstractPixEntity
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNome(): string
+    public function getNome(): ?string
     {
         return $this->nome;
     }
 
     /**
-     * @param string $nome
+     * @param string|null $nome
      * @return Client
      */
-    public function setNome(string $nome): self
+    public function setNome(?string $nome): self
     {
         $this->nome = $nome;
         return $this;

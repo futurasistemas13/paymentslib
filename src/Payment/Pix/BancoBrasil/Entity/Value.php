@@ -17,7 +17,7 @@ class Value extends AbstractPixEntity
      */
     public function getOriginal(): string
     {
-        return $this->value;
+        return $this->original;
     }
 
     /**
