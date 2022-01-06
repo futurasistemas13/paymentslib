@@ -47,4 +47,15 @@ class Schedule
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getArraySchedule(): array
+    {
+        return [
+            'solicitacao' => $this->getSolicitacao(),
+            'liquidacao' => $this->getLiquidacao()
+        ];
+    }
+
 }
