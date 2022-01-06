@@ -111,4 +111,16 @@ class Client extends AbstractPixEntity
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getArrayClient(): array
+    {
+        return [
+            'cpf' => $this->getCpf(),
+            'cnpj' => $this->getCnpj(),
+            'nome' => $this->getNome()
+        ];
+    }
+
 }

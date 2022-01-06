@@ -30,4 +30,14 @@ class Value extends AbstractPixEntity
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getArrayValue(): array
+    {
+        return [
+            'original' => $this->getOriginal()
+        ];
+    }
+
 }
